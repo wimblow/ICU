@@ -80,12 +80,28 @@ def app():
     ##########################
     if select_mode == "Simulation":
         st.title("Simulation")
+        detect_count1 = st.empty()
+        detect_count2 = st.empty()
         simu_duration = st.sidebar.text_input(label="duration", value="100")
         simu_sleep = st.sidebar.text_input(label="sleep", value="5")
         if st.sidebar.button("Launch"):
-            Simul.auto_simul(duration=int(simu_duration), sleep=int(simu_sleep))
-            # st.write("Simulation launched")
-            # st.write("duration:", simu_duration)
-            # st.write("sleep:", simu_sleep)
+            with_mask = 0
+            without_mask = 0
+            for i in range(int(simu_duration)):
+                print(i)
+                _statut = Simul.auto_simul(sleep=int(simu_sleep))
+                if _statut == 1:
+                    with_mask += 1
+                elif _statut == 2:
+                    without_mask += 1
+
+                detect_count1.markdown(f"Personnes détectée avec masque : {with_mask}")
+                detect_count2.markdown(f"Personnes détectée sans masque : {without_mask}")
+
+
+
+                # st.write("Simulation launched")
+                # st.write("duration:", simu_duration)
+                # st.write("sleep:", simu_sleep)
 
 
