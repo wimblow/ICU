@@ -1,14 +1,12 @@
 import streamlit as st
-import datetime
+from datetime import date
 import numpy as np
+import pandas as pd
 
 
-dico = {'with_mask': {datetime.date(2022, 4, 23): 991, datetime.date(2022, 4, 25): 241, datetime.date(2022, 4, 26): 1269, datetime.date(2022, 4, 24): 991}, 
-'without_mask': {datetime.date(2022, 4, 23): 9, datetime.date(2022, 4, 25): 4, datetime.date(2022, 4, 26): 168, datetime.date(2022, 4, 24): 10}}
 
+dico = {'with_mask': {"2022, 4, 23": 991, "2022, 4, 25": 241, "2022, 4, 26": 1269, "2022, 4, 24": 991}, 
+'without_mask': {"2022, 4, 23": 9, "2022, 4, 25": 4, "2022, 4, 26": 168, "2022, 4, 24": 10}}
 
-chart_data = pd.DataFrame(
-     np.random.randn(50, 3),
-     columns=["a", "b", "c"])
-
-st.bar_chart(dico)
+st.bar_chart(data=dico)
+st.area_chart(data=dico)

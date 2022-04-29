@@ -95,7 +95,7 @@ def app():
     group_by_date = {x:{} for x in ["with_mask", "without_mask"]}
     select_drom_dates = {x:[] for x in ["with_mask", "without_mask"]}
     for i in val_histo:
-        select_drom_dates[i[-1]].append(i[1])
+        select_drom_dates[i[-1]].append(str(i[1]))
 
     for k, v in select_drom_dates.items():
         for i in set(v):
@@ -140,7 +140,10 @@ def app():
             else:
                 st.write("There is no datas to display")
 
-        # st.write("---")
+        st.write("---")
+        print(group_by_date)
+        st.bar_chart(data=group_by_date)
+        st.area_chart(data=group_by_date)
         # with st.container():
         #     fig = ff.create_distplot(values, labels, bin_size=[.1, .25, .5])
 
