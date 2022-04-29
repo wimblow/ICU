@@ -12,6 +12,9 @@ créer une ligne pour la validation des box
 sauvegarder la détection en bdd
 
 
+bdd logging:
+- id personne, nom, premon, mdp
+- id connexion, id personne
 
 """
 

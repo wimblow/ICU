@@ -63,9 +63,50 @@ class Connexion:
     @classmethod
     def insert_data(cls, date, time, timestamp, statut):
         cls.connect()
-        cls.cursor.execute(f"INSERT INTO record \
+        cls.cursor.execute(
+            f"INSERT INTO record \
             VALUES (NULL,'{date}','{time}','{timestamp}','{statut}')")
         cls.bdd.commit()
         cls.close()
 
+    @classmethod
+    def select_dataviz(cls, start_time, end_time):
+
+        cls.connect()
+        cls.cursor.execute(
+            f"SELECT label_statut \
+            FROM statut \
+            JOIN record \
+            ON statut.id_statut = record.id_statut \
+            WHERE record.timestamp_value >= {start_time} \
+            AND record.timestamp_value <= {end_time}"
+        )
   
+        rep = cls.cursor.fetchall()
+
+        cls.close()
+        return rep
+
+    @classmethod
+    def select_dataviz2(cls, start_time, end_time):
+
+        cls.connect()
+        cls.cursor.execute(
+            f"SELECT * \
+            FROM record \
+            JOIN statut \
+            ON statut.id_statut = record.id_statut \
+            WHERE record.timestamp_value >= {start_time} \
+            AND record.timestamp_value <= {end_time}"
+        )
+  
+        rep = cls.cursor.fetchall()
+
+        cls.close()
+        return rep
+
+
+
+# if __name__ == "__main__":
+#     output = Connexion.select_dataviz2(start_time="2022-04-26", end_time="2022-04-27")
+#     print(output)

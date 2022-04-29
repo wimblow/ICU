@@ -33,8 +33,8 @@ class Simul:
         _date = date.today()
         _time = dt.now().strftime("%H:%M:%S")
         _timestamp = round(dt.now().timestamp())
-        rdm_val = random.randint(0,1000)
-        if rdm_val == 246:
+        rdm_val = random.randint(0,100)
+        if rdm_val == 2:
             _statut = 2
             alert.alert(_date, _time)
         else:

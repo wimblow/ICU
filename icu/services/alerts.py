@@ -18,4 +18,8 @@ class AlertDiscord:
         webhook.execute()
         return "Système d'alerte actif"
 
+    @classmethod
+    def test_model(cls):
+        webhook = DiscordWebhook(url=cls.webhook_url_connect, content="Chargement du modèle YOLOv5n")
+        webhook.execute()
 
